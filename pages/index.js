@@ -1,5 +1,5 @@
 import { SearchIcon } from '@heroicons/react/outline';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import cn from 'classnames';
 
@@ -13,19 +13,18 @@ export async function getStaticProps() {
 
 export default function Home({ courses }) {
   const [search, setSearch] = useState('');
-  const [filteredCourse, setFilteredCourse] = useState([]);
+  const [filteredCourses, setFilteredCourses] = useState([]);
 
-  useEffect(() => {
+  const filterCourse = (value) => {
+    setSearch(value);
     const result = courses
-      .filter((course) => {
-        return search.toLowerCase() === ''
-          ? ''
-          : course.mn_name.toLowerCase().includes(search);
-      })
+      .filter((course) =>
+        course.mn_name.toLowerCase().includes(search.toLowerCase()),
+      )
       .slice(0, 9);
 
-    setFilteredCourse(result);
-  }, [search]);
+    setFilteredCourses(result);
+  };
 
   return (
     <div className='max-w-2xl mt-0 mx-auto w-full'>
@@ -43,7 +42,7 @@ export default function Home({ courses }) {
             )}
             type='text'
             placeholder='Хичээлийн нэрээр хайх...'
-            onChange={(e) => setSearch(e.target.value)}
+            onChange={(e) => filterCourse(e.target.value)}
           />
           <div className='absolute top-0 right-0 flex items-center justify-center h-full px-2'>
             <SearchIcon className='h-5 w-5 text-gray-400' />
@@ -55,8 +54,8 @@ export default function Home({ courses }) {
             'relative inline-block max-w-xs md:max-w-lg w-full bg-white dark:bg-gray-700 rounded-b-md drop-shadow-lg overflow-hidden transition-all duration-75 ease-in py-2',
           )}
         >
-          {filteredCourse.length > 1 ? (
-            filteredCourse.map((course) => (
+          {filteredCourses.length > 0 ? (
+            filteredCourses.map((course) => (
               <div
                 className='cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 py-2 px-4'
                 key={course.id}
@@ -67,12 +66,7 @@ export default function Home({ courses }) {
               </div>
             ))
           ) : (
-            <p
-              className={cn(
-                filteredCourse.length > 1 ? 'hidden' : 'visible',
-                'py-2 px-4 text-gray-600 dark:text-gray-400',
-              )}
-            >
+            <p className='py-2 px-4 text-gray-600 dark:text-gray-400'>
               Хайлт олдсонгүй :&#40;
             </p>
           )}

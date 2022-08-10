@@ -1,5 +1,5 @@
 import { useTheme } from 'next-themes';
-import { MoonIcon, SunIcon, MenuIcon } from '@heroicons/react/outline';
+import { MoonIcon, SunIcon } from '@heroicons/react/outline';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
