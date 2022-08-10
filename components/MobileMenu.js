@@ -28,19 +28,21 @@ export default function MobileMenu() {
       </button>
 
       <div
-        className={cn(
-          isMenuOpen ? 'opacity-100' : 'opacity-0',
-          'absolute min-w-max transition-all duration-75 ease-in',
-        )}
+        className={cn(isMenuOpen ? 'visible' : 'hidden', 'absolute min-w-max')}
       >
-        <div className='flex flex-col items-start justify-center min-w-[10rem] w-full bg-gray-200 dark:bg-gray-800 py-2 rounded-md dark:shadow-lg shadow-md'>
+        <div
+          className={cn(
+            isMenuOpen ? 'opacity-100 visible' : 'opacity-0 hidden',
+            'flex flex-col items-start justify-center min-w-[10rem] w-full bg-gray-200 dark:bg-gray-800 py-2 rounded-md dark:shadow-lg shadow-md transition-colors ease-in duration-75',
+          )}
+        >
           <Link href='/'>
-            <a className='py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all'>
+            <a className='py-2 px-4 transition-colors ease-in duration-75'>
               Нүүр
             </a>
           </Link>
           <Link href='/courses'>
-            <a className='py-2 px-4 w-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-all'>
+            <a className='py-2 px-4 transition-colors ease-in duration-75'>
               Хичээл
             </a>
           </Link>
