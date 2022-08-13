@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://botgo.vercel.app/sitemap.xml
