@@ -26,7 +26,7 @@ const Courses = ({ data, countOfCourses }) => {
 
   useEffect(() => {
     setHasMore(countOfCourses > courses.length ? true : false);
-  }, [courses]);
+  }, [courses, countOfCourses]);
 
   return (
     <div className='flex flex-col justify-center items-start max-w-2xl w-full mx-auto'>
