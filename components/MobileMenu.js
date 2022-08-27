@@ -1,7 +1,7 @@
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import cn from 'classnames';
 
 export default function MobileMenu() {

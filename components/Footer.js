@@ -5,7 +5,7 @@ export default function Footer() {
     <div className='max-w-2xl w-full mx-auto flex items-center justify-center'>
       <div className='mt-10 mb-5'>
         <p className='text-center text-xs md:text-sm'>
-          Designed and Developed by Javkhlan.
+          Designed & Developed by Jak.
           <br />
           Built with{' '}
           <span className='font-semibold text-blue-600 dark:text-blue-400'>
