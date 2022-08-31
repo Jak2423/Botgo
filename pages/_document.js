@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html lang='en'>
       <Head>
-        <link href='/static/favicons' rel='shortcut icon' />
+        <link href='/static/favicons/favicon.ico' rel='shortcut icon' />
         <link href='/static/favicons/site.webmanifest' rel='manifest' />
         <link
           href='/static/favicons/apple-touch-icon.png'
