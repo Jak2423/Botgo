@@ -1,24 +1,3 @@
-export const getStaticPaths = async () => {
-	const data = (await import('../../lib/courses.json')).default;
-
-	const paths = data.map((course) => ({
-		params: { id: course.id.toString() },
-	}));
-
-	return {
-		paths,
-		fallback: false,
-	};
-};
-
-export const getStaticProps = async (context) => {
-	const data = (await import('../../lib/courses.json')).default;
-	const course = data.find((c) => c.id.toString() === context.params.id);
-	return {
-		props: { course: course },
-	};
-};
-
 const Details = ({ course }) => {
 	return (
 		<article className='max-w-2xl w-full mx-auto flex flex-col items-start justify-center'>
@@ -63,3 +42,24 @@ const Details = ({ course }) => {
 };
 
 export default Details;
+
+export const getStaticPaths = async () => {
+	const data = (await import('../../lib/courses.json')).default;
+
+	const paths = data.map((course) => ({
+		params: { id: course.id },
+	}));
+
+	return {
+		paths,
+		fallback: false,
+	};
+};
+
+export const getStaticProps = async (context) => {
+	const data = (await import('../../lib/courses.json')).default;
+	const course = data.find((c) => c.id === context.params.id);
+	return {
+		props: { course: course },
+	};
+};

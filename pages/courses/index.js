@@ -2,16 +2,6 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-export async function getStaticProps() {
-	const data = (await import('../../lib/courses.json')).default.slice(0, 10);
-	const countOfCourses = (await import('../../lib/courses.json')).default
-		.length;
-
-	return {
-		props: { data, countOfCourses },
-	};
-}
-
 const Courses = ({ data, countOfCourses }) => {
 	const [courses, setCourses] = useState(data);
 	const [hasMore, setHasMore] = useState(true);
@@ -79,3 +69,13 @@ const Courses = ({ data, countOfCourses }) => {
 };
 
 export default Courses;
+
+export async function getStaticProps() {
+	const data = (await import('../../lib/courses.json')).default.slice(0, 10);
+	const countOfCourses = (await import('../../lib/courses.json')).default
+		.length;
+
+	return {
+		props: { data, countOfCourses },
+	};
+}
