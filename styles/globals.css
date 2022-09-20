@@ -8,7 +8,7 @@
 	@apply m-0 p-0 box-border;
 }
 body {
-	@apply min-h-screen relative pb-[100px] leading-6 bg-gray-50 dark:bg-gray-900 text-black dark:text-white;
+	@apply min-h-screen relative leading-6 mb-[-48px] bg-gray-50 dark:bg-gray-900 text-black dark:text-white;
 	min-height: -webkit-fill-available;
 }
 html {
