@@ -19,7 +19,7 @@ const Courses = ({ data, countOfCourses }) => {
 	}, [courses, countOfCourses]);
 
 	return (
-		<div className='flex flex-col justify-center items-start max-w-2xl w-full mx-auto'>
+		<div className='flex flex-col justify-center items-start max-w-2xl w-full mx-auto mb-4'>
 			<h1 className='mb-8 text-2xl md:text-4xl font-bold tracking-tight text-black dark:text-white'>
 				Бүх хичээл
 			</h1>
@@ -32,15 +32,12 @@ const Courses = ({ data, countOfCourses }) => {
 						Loading...
 					</p>
 				}
-				endMessage={
-					<p className='text-center text-md text-grey-700 dark:text-gray-300'>
-						Nothing more to show
-					</p>
-				}
+				scrollableTarget='scrollableDiv'
+				className='md:min-w-[42rem]'
 			>
 				{courses.map((course) => (
 					<Link href={`/courses/${course.id}`} key={course.id}>
-						<a className='w-full'>
+						<a>
 							<div className='w-full mb-8'>
 								<div className='flex flex-col justify-between md:flex-row'>
 									<h2 className='mb-2 text-lg md:text-xl font-medium text-gray-900 dark:text-gray-100 hover:translate-x-1 transition-all ease-linear'>

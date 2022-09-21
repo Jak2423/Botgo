@@ -4,23 +4,23 @@ const Details = ({ course }) => {
 			<h1 className='mb-4 text-2xl font-bold tracking-tight md:text-4xl'>
 				{course.mn_name}
 			</h1>
-			<div className='flex flex-col md:flex-row items-start justify-between md:items-center w-full'>
+			<section className='flex flex-col md:flex-row items-start justify-between md:items-center w-full'>
 				<p className='text-md text-grey-700 dark:text-gray-300'>
 					{course.course_index} / {course.degree_level}
 				</p>
 				<p className='text-md text-grey-700 dark:text-gray-300 mt-2 md:mt-0'>
 					Багц цаг: {course.credit}
 				</p>
-			</div>
-			<div className='flex flex-col md:flex-row items-start justify-between md:items-center w-full'>
+			</section>
+			<section className='flex flex-col md:flex-row items-start justify-between md:items-center w-full'>
 				<p className='text-md text-grey-700 dark:text-gray-300'>
 					{course.department}
 				</p>
 				<p className='text-md text-grey-700 dark:text-gray-300 mt-2 md:mt-0'>
 					{course.semester}
 				</p>
-			</div>
-			<div className='w-full mt-8'>
+			</section>
+			<section className='w-full mt-8'>
 				<div className='mb-8 text-gray-800 dark:text-gray-300 border-l-4 border-gray-200 dark:border-gray-700 pl-4'>
 					<p>Лекц: {course.lecture_credit}</p>
 					<p>Семинар: {course.seminar_credit}</p>
@@ -36,7 +36,7 @@ const Details = ({ course }) => {
 					{course.summary}
 				</p>
 				<hr className='border-gray-200 dark:border-gray-800 my-12' />
-			</div>
+			</section>
 		</article>
 	);
 };

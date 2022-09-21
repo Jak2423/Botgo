@@ -22,8 +22,12 @@ export default function Layout({ children }) {
 				/>
 				<meta name='robots' content='follow, index' />
 			</Head>
-			<Navbar />
-			<main className='flex flex-col justify-center px-8'>{children}</main>
+			<div className='min-h-[calc(100vh-88px)]'>
+				<Navbar />
+				<main className='flex flex-col justify-center px-8'>
+					{children}
+				</main>
+			</div>
 			<Footer />
 		</>
 	);
