@@ -11,17 +11,16 @@ function NavItem({ href, text }) {
 	const isActive = router.asPath === href;
 
 	return (
-		<Link href={href}>
-			<a
-				className={cn(
-					isActive
-						? 'font-semibold text-gray-800 dark:text-gray-200'
-						: 'font-normal text-gray-600 dark:text-gray-400',
-					'hidden md:inline-block p-1 px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-800 transition-all  rounded-md',
-				)}
-			>
-				{text}
-			</a>
+		<Link
+			href={href}
+			className={cn(
+				isActive
+					? 'font-semibold text-gray-800 dark:text-gray-200'
+					: 'font-normal text-gray-600 dark:text-gray-400',
+				'hidden md:inline-block p-1 px-3 py-2 hover:bg-gray-200 dark:hover:bg-gray-800 transition-all  rounded-md',
+			)}
+		>
+			{text}
 		</Link>
 	);
 }
@@ -45,9 +44,7 @@ export default function Navbar() {
 				<button
 					aria-label='Toggle Dark Mode'
 					className='w-9 h-9 bg-gray-200 dark:bg-gray-800 rounded-lg flex items-center justify-center hover:ring-2 ring-gray-200 dark:ring-gray-400 transition-all ease-in duration-100'
-					onClick={() =>
-						setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
-					}
+					onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
 				>
 					{mounted && (
 						<div>

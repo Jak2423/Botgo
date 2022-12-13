@@ -9,10 +9,11 @@ export default function NotFound() {
 			<p className='text-gray-600 dark:text-gray-400 mb-20 text-xl md:text-2xl'>
 				This page could not be found.
 			</p>
-			<Link href='/'>
-				<a className='p-2 sm:p-4 w-56 font-bold mx-auto bg-gray-200 dark:bg-gray-800 text-center rounded-md text-black dark:text-white'>
-					Return Home
-				</a>
+			<Link
+				href='/'
+				className='p-2 sm:p-4 w-56 font-bold mx-auto bg-gray-200 dark:bg-gray-800 text-center rounded-md text-black dark:text-white'
+			>
+				Return Home
 			</Link>
 		</div>
 	);
