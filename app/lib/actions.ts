@@ -1,5 +1,16 @@
 import { Course } from "./definitions";
 
+export async function getCourses() {
+   try {
+      let data = (await import('./courses-data.json')).default as Course[];
+
+      return data;
+   } catch (error) {
+      throw new Error('Failed to fetch courses.');
+   }
+}
+
+
 const ITEMS_PER_PAGE = 20;
 export async function getFilteredCourses(query: string, currentPage: number, only_lecture: boolean) {
    const offset = (currentPage - 1) * ITEMS_PER_PAGE;
