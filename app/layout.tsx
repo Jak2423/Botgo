@@ -8,14 +8,6 @@ export const metadata: Metadata = {
 	description: 'МУИС-ийн хичээлүүд',
 	robots: 'follow, index',
 	keywords: ['num', 'courses', 'муис хичээл', 'хичээл сонголт', 'муис', 'botgo'],
-	openGraph: {
-		title: 'Botgo',
-		description: 'МУИС-ийн хичээлүүд',
-		url: 'https://botgo.vercel.app',
-		siteName: 'Botgo',
-		locale: 'en_US',
-		type: 'website',
-	},
 	icons: {
 		icon: '/images/favicon.ico',
 		apple: '/images/apple-touch-icon.png',

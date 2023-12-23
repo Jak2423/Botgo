@@ -5,11 +5,13 @@ import { Course } from '../lib/definitions';
 export default async function ScrollableCourses({
 	query,
 	only_lecture,
+	currentPage,
 }: {
 	query: string;
 	only_lecture: boolean;
+	currentPage: number;
 }) {
-	const courses = await getFilteredCourses(query, only_lecture);
+	const courses = await getFilteredCourses(query, currentPage, only_lecture);
 
 	return (
 		<div className='md:min-w-[42rem]'>

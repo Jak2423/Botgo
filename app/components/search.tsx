@@ -11,6 +11,7 @@ export default function Search() {
 
 	const handleSearch = useDebouncedCallback((term) => {
 		const params = new URLSearchParams(searchParams);
+		params.set('page', '1');
 		if (term) {
 			params.set('query', term);
 		} else {
@@ -21,6 +22,7 @@ export default function Search() {
 
 	const createFilterURL = (filter: boolean) => {
 		const params = new URLSearchParams(searchParams);
+		params.set('page', '1');
 		if (filter) {
 			params.set('only_lecture', filter.toString());
 		} else {
