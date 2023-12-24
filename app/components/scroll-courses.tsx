@@ -14,7 +14,7 @@ export default async function ScrollableCourses({
 	const courses = await getFilteredCourses(query, currentPage, only_lecture);
 
 	return (
-		<div className='md:min-w-[42rem]'>
+		<div className='w-full md:min-w-[42rem]'>
 			{courses.length ? (
 				courses.map((course: Course) => (
 					<Link href={`/courses/${course.id}`} key={course.id}>

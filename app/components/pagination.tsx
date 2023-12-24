@@ -3,31 +3,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname, useSearchParams } from 'next/navigation';
-
-export const generatePagination = (currentPage: number, totalPages: number) => {
-	// If the total number of pages is 7 or less,
-	// display all pages without any ellipsis.
-	if (totalPages <= 7) {
-		return Array.from({ length: totalPages }, (_, i) => i + 1);
-	}
-
-	// If the current page is among the first 3 pages,
-	// show the first 3, an ellipsis, and the last 2 pages.
-	if (currentPage <= 3) {
-		return [1, 2, 3, '...', totalPages - 1, totalPages];
-	}
-
-	// If the current page is among the last 3 pages,
-	// show the first 2, an ellipsis, and the last 3 pages.
-	if (currentPage >= totalPages - 2) {
-		return [1, 2, '...', totalPages - 2, totalPages - 1, totalPages];
-	}
-
-	// If the current page is somewhere in the middle,
-	// show the first page, an ellipsis, the current page and its neighbors,
-	// another ellipsis, and the last page.
-	return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
-};
+import { generatePagination } from '../lib/util';
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
 	const pathname = usePathname();
@@ -49,7 +25,6 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 				href={createPageURL(currentPage - 1)}
 				isDisabled={currentPage <= 1}
 			/>
-
 			<div className='flex space-x-1'>
 				{allPages.map((page, index) => {
 					let position: 'first' | 'last' | 'single' | 'middle' | undefined;
@@ -70,7 +45,6 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
 					);
 				})}
 			</div>
-
 			<PaginationArrow
 				direction='right'
 				href={createPageURL(currentPage + 1)}
@@ -92,8 +66,6 @@ function PaginationNumber({
 	isActive: boolean;
 }) {
 	const className = clsx('flex w-9 h-9 items-center justify-center text-sm rounded-md', {
-		'rounded-l-md': position === 'first' || position === 'single',
-		'rounded-r-md': position === 'last' || position === 'single',
 		'z-10 border-gray-200 dark:border-gray-800 text-gray-900 dark:text-gray-100 border-2':
 			isActive,
 		'hover:bg-gray-200 dark:hover:bg-gray-800': !isActive && position !== 'middle',

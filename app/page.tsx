@@ -29,7 +29,7 @@ export default async function Home({
 					only_lecture={only_lecture}
 				/>
 			</Suspense>
-			<div className=' flex w-full justify-center items-center mb-8'>
+			<div className=' flex w-full justify-center items-center mt-2 mb-8'>
 				<Pagination totalPages={totalPages} />
 			</div>
 		</div>

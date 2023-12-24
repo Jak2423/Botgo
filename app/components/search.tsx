@@ -11,18 +11,18 @@ export default function Search() {
 
 	const handleSearch = useDebouncedCallback((term) => {
 		const params = new URLSearchParams(searchParams);
-		params.set('page', '1');
+		params.delete('page');
 		if (term) {
 			params.set('query', term);
 		} else {
 			params.delete('query');
 		}
 		replace(`${pathname}?${params.toString()}`);
-	}, 300);
+	}, 100);
 
 	const createFilterURL = (filter: boolean) => {
 		const params = new URLSearchParams(searchParams);
-		params.set('page', '1');
+		params.delete('page');
 		if (filter) {
 			params.set('only_lecture', filter.toString());
 		} else {
@@ -39,6 +39,7 @@ export default function Search() {
 					className='rounded-md w-full py-2 pl-4 pr-10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border-2 border-gray-200 dark:border-gray-700 focus:outline-none focus:border-gray-400 dark:focus:border-gray-500 hover:border-gray-400 dark:hover:border-gray-500 outline-none'
 					type='text'
 					placeholder='Хичээлийн нэрээр хайх...'
+					defaultValue={searchParams.get('query')?.toString()}
 					onChange={(e) => handleSearch(e.target.value)}
 				/>
 				<div className='absolute top-0 right-0 flex items-center justify-center h-full px-2'>
