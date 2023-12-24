@@ -14,7 +14,6 @@ export async function getCourses() {
 const ITEMS_PER_PAGE = 20;
 export async function getFilteredCourses(query: string, currentPage: number, only_lecture: boolean) {
    const offset = (currentPage - 1) * ITEMS_PER_PAGE;
-
    try {
       let data = (await import('./courses-data.json')).default as Course[];
       if (only_lecture) {
