@@ -31,12 +31,12 @@ export default function Navbar() {
     <div className="flex flex-col justify-center px-8">
       <nav className="relative mx-auto flex w-full max-w-2xl items-center justify-between pb-8 pt-8 md:pb-16">
         <div>
-          <NavItem
+          <Link
             href={"/"}
-            child={
-              <AcademicCapIcon className="h-10 w-10 text-gray-800 dark:text-gray-200" />
-            }
-          />
+            className="inline-block rounded-md font-semibold text-gray-800 transition-all dark:text-gray-200"
+          >
+            <AcademicCapIcon className="h-10 w-10 text-gray-800 dark:text-gray-200" />
+          </Link>
         </div>
         <button
           aria-label="Toggle Dark Mode"
