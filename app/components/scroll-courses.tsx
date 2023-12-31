@@ -4,14 +4,14 @@ import { Course } from '../lib/definitions';
 
 export default async function ScrollableCourses({
 	query,
-	only_lecture,
+	sort,
 	currentPage,
 }: {
 	query: string;
-	only_lecture: boolean;
+	sort: string;
 	currentPage: number;
 }) {
-	const courses = await getFilteredCourses(query, currentPage, only_lecture);
+	const courses = await getFilteredCourses(query, currentPage, sort);
 
 	return (
 		<div className='w-full md:min-w-[42rem]'>

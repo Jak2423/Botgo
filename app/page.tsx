@@ -10,25 +10,21 @@ export default async function Home({
 }: {
 	searchParams?: {
 		query?: string;
-		only_lecture?: boolean;
+		sort?: string;
 		page?: string;
 	};
 }) {
 	const query = searchParams?.query || '';
-	const only_lecture = searchParams?.only_lecture || false;
+	const sort = searchParams?.sort || '';
 	const currentPage = Number(searchParams?.page) || 1;
 
-	const totalPages = await getCoursesPages(query, only_lecture);
+	const totalPages = await getCoursesPages(query, sort);
 
 	return (
 		<div className='flex flex-col justify-center items-start max-w-2xl w-full mx-auto mb-4 no-scrollbar'>
 			<Search />
 			<Suspense key={query + currentPage} fallback={<CoursesSkeleton />}>
-				<ScrollableCourses
-					query={query}
-					currentPage={currentPage}
-					only_lecture={only_lecture}
-				/>
+				<ScrollableCourses query={query} currentPage={currentPage} sort={sort} />
 			</Suspense>
 			<div className='flex w-full justify-center items-center mt-2 mb-8'>
 				<Pagination totalPages={totalPages} />

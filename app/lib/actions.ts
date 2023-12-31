@@ -12,11 +12,11 @@ export async function getCourses() {
 
 
 const ITEMS_PER_PAGE = 20;
-export async function getFilteredCourses(query: string, currentPage: number, only_lecture: boolean) {
+export async function getFilteredCourses(query: string, currentPage: number, sort: string) {
    const offset = (currentPage - 1) * ITEMS_PER_PAGE;
    try {
       let data = (await import('./courses-data.json')).default as Course[];
-      if (only_lecture) {
+      if (sort === 'only_lecture') {
          data = data.filter(
             (course: Course) =>
                course.credit === 3 &&
@@ -25,6 +25,11 @@ export async function getFilteredCourses(query: string, currentPage: number, onl
                course.lab_credit === '-' &&
                course.degree_level === 'Бакалавр',
             // (course.semester === 'Улирал харгалзахгүй' || course.semester === 'Хаврын улирал'),
+         );
+      } else if (sort === 'general') {
+         data = data.filter(
+            (course: Course) =>
+               course.mn_name.toLowerCase().includes('Ерөнхий суурь'.toLowerCase())
          );
       }
 
@@ -40,23 +45,11 @@ export async function getFilteredCourses(query: string, currentPage: number, onl
    }
 }
 
-export async function getCourseById(id: string) {
-   try {
-      const data = (await import('./courses-data.json')).default as Course[];
-      const course = data.find((course: Course) => course.id === id);
-
-      return course;
-   } catch (error) {
-      throw new Error('Failed to fetch course by id.');
-   }
-}
-
-
-export async function getCoursesPages(query: string, only_lecture: boolean) {
+export async function getCoursesPages(query: string, sort: string) {
    try {
       let data = (await import('./courses-data.json')).default as Course[];
 
-      if (only_lecture) {
+      if (sort === 'only_lecture') {
          data = data.filter(
             (course: Course) =>
                course.credit === 3 &&
@@ -65,6 +58,11 @@ export async function getCoursesPages(query: string, only_lecture: boolean) {
                course.lab_credit === '-' &&
                course.degree_level === 'Бакалавр',
             // (course.semester === 'Улирал харгалзахгүй' || course.semester === 'Хаврын улирал'),
+         );
+      } else if (sort === 'general') {
+         data = data.filter(
+            (course: Course) =>
+               course.mn_name.toLowerCase().includes('Ерөнхий суурь'.toLowerCase())
          );
       }
 
@@ -80,5 +78,16 @@ export async function getCoursesPages(query: string, only_lecture: boolean) {
    } catch (error) {
       console.error('Database Error:', error);
       throw new Error('Failed to fetch total number of invoices.');
+   }
+}
+
+export async function getCourseById(id: string) {
+   try {
+      const data = (await import('./courses-data.json')).default as Course[];
+      const course = data.find((course: Course) => course.id === id);
+
+      return course;
+   } catch (error) {
+      throw new Error('Failed to fetch course by id.');
    }
 }
