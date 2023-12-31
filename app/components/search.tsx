@@ -1,67 +1,70 @@
-'use client';
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/react/24/outline';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { useDebouncedCallback } from 'use-debounce';
+"use client";
+import {
+  ChevronDownIcon,
+  MagnifyingGlassIcon,
+} from "@heroicons/react/24/outline";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useDebouncedCallback } from "use-debounce";
 
 export default function Search() {
-	const searchParams = useSearchParams();
-	const pathname = usePathname();
-	const { replace } = useRouter();
-	const sort = searchParams.get('sort') || '';
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
+  const { replace } = useRouter();
+  const sort = searchParams.get("sort") || "";
 
-	const handleSearch = useDebouncedCallback((term) => {
-		const params = new URLSearchParams(searchParams);
-		params.delete('page');
-		if (term) {
-			params.set('query', term);
-		} else {
-			params.delete('query');
-		}
-		replace(`${pathname}?${params.toString()}`);
-	}, 100);
+  const handleSearch = useDebouncedCallback((term) => {
+    const params = new URLSearchParams(searchParams);
+    params.delete("page");
+    if (term) {
+      params.set("query", term);
+    } else {
+      params.delete("query");
+    }
+    replace(`${pathname}?${params.toString()}`);
+  }, 100);
 
-	const createFilterURL = (filter: string) => {
-		const params = new URLSearchParams(searchParams);
-		params.delete('page');
+  const createFilterURL = (filter: string) => {
+    const params = new URLSearchParams(searchParams);
+    params.delete("page");
 
-		if (filter !== '') {
-			params.set('sort', filter.toString());
-		} else {
-			params.delete('sort');
-		}
+    if (filter !== "") {
+      params.set("sort", filter.toString());
+    } else {
+      params.delete("sort");
+    }
 
-		replace(`${pathname}?${params.toString()}`);
-	};
+    replace(`${pathname}?${params.toString()}`);
+  };
 
-	return (
-		<div className='flex flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-x-3 sm:space-y-0 w-full mb-10'>
-			<div className='flex-1 relative w-full'>
-				<input
-					className='w-full rounded-md py-2 pl-4 pr-10 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 border border-gray-200 dark:border-gray-700 focus:outline-none focus:border-gray-400 dark:focus:border-gray-500 hover:border-gray-400 dark:hover:border-gray-500 outline-none'
-					type='text'
-					placeholder='Хичээлийн нэрээр хайх...'
-					defaultValue={searchParams.get('query')?.toString()}
-					onChange={(e) => handleSearch(e.target.value)}
-				/>
-				<div className='absolute top-0 right-0 flex items-center justify-center h-full px-2'>
-					<MagnifyingGlassIcon className='w-4 h-4 text-gray-400' />
-				</div>
-			</div>
-			<div className='relative sm:flex-shrink-0'>
-				<select
-					className='appearance-none w-full items-center justify-between text-ellipsis rounded-md bg-gray-100 dark:bg-gray-900 border border-gray-200 dark:border-gray-700  hover:border-gray-400 dark:hover:border-gray-500 text-gray-900 dark:text-gray-100 py-2 px-4 sm:flex sm:w-48'
-					defaultValue={sort}
-					onChange={(e) => createFilterURL(e.target.value)}
-				>
-					<option value=''>Бүх хичээл</option>
-					<option value='general'>Ерөнхий суурь</option>
-					<option value='only_lecture'>Дан лекц</option>
-				</select>
-				<div className='absolute top-0 right-0 flex items-center justify-center h-full px-2'>
-					<ChevronDownIcon className='w-3 h-3' />
-				</div>
-			</div>
-			{/* <label className='relative inline-flex items-center cursor-pointer mb-4'>
+  return (
+    <div className="mb-10 flex w-full flex-col space-y-4 sm:flex-row sm:items-center sm:justify-between sm:space-x-3 sm:space-y-0">
+      <div className="relative w-full flex-1">
+        <input
+          className="w-full rounded-md border border-gray-200 bg-white py-2 pl-4 pr-10 text-gray-900 outline-none hover:border-gray-400 focus:border-gray-400 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-100 dark:hover:border-gray-500 dark:focus:border-gray-500"
+          type="text"
+          placeholder="Хичээлийн нэрээр хайх..."
+          defaultValue={searchParams.get("query")?.toString()}
+          onChange={(e) => handleSearch(e.target.value)}
+        />
+        <div className="absolute right-0 top-0 flex h-full items-center justify-center px-2">
+          <MagnifyingGlassIcon className="h-4 w-4 text-gray-400" />
+        </div>
+      </div>
+      <div className="relative sm:flex-shrink-0">
+        <select
+          className="w-full appearance-none items-center justify-between text-ellipsis rounded-md border border-gray-200 bg-gray-100 px-4 py-2  text-gray-900 hover:border-gray-400 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:hover:border-gray-500 sm:flex sm:w-48"
+          defaultValue={sort}
+          onChange={(e) => createFilterURL(e.target.value)}
+        >
+          <option value="">Бүх хичээл</option>
+          <option value="general">Ерөнхий суурь</option>
+          <option value="only_lecture">Дан лекц</option>
+        </select>
+        <div className="absolute right-0 top-0 flex h-full items-center justify-center px-2">
+          <ChevronDownIcon className="h-3 w-3" />
+        </div>
+      </div>
+      {/* <label className='relative inline-flex items-center cursor-pointer mb-4'>
 				<input
 					type='checkbox'
 					className='sr-only peer'
@@ -73,6 +76,6 @@ export default function Search() {
 					Дан лекц
 				</span>
 			</label> */}
-		</div>
-	);
+    </div>
+  );
 }
