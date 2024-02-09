@@ -1,3 +1,4 @@
+import { GeistSans } from "geist/font/sans";
 import { Metadata, Viewport } from "next";
 import Navbar from "./components/navbar";
 import "./globals.css";
@@ -44,8 +45,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className="bg-gray-50 leading-6 text-black dark:bg-gray-900 dark:text-white">
+    <html lang="en" suppressHydrationWarning className={GeistSans.className}>
+      <body className="relative bg-gray-50 leading-6 text-black dark:bg-gray-900 dark:text-white">
         <Providers>
           <div className="no-scrollbar min-h-[calc(100vh-96px)]">
             <Navbar />
@@ -53,6 +54,7 @@ export default function RootLayout({
               {children}
             </main>
           </div>
+          <div className="bg-radial-gradient-master absolute left-1/2 top-0 -z-10 hidden h-screen w-full -translate-x-1/2  dark:block"></div>
         </Providers>
       </body>
     </html>

@@ -3,19 +3,27 @@
 @tailwind utilities;
 
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	-ms-overflow-style: none;
-	scrollbar-width: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 *::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 html {
-	min-width: 360px;
-	scroll-behavior: smooth;
-	min-height: 100%;
+  min-width: 360px;
+  scroll-behavior: smooth;
+  min-height: 100%;
+}
+
+.bg-radial-gradient-master {
+  background-image: radial-gradient(
+    circle at 50% 0%,
+    rgb(173 182 196 / 30%),
+    rgba(255, 255, 255, 0) 30%
+  );
 }
