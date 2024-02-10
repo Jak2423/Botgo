@@ -1,8 +1,14 @@
 "use client";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
+import { ReactElement } from "react";
 import { generatePagination } from "../lib/util";
 
 export default function Pagination({ totalPages }: { totalPages: number }) {
@@ -21,6 +27,13 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
   return (
     <div className="inline-flex">
       <PaginationArrow
+        icon={<ChevronDoubleLeftIcon className="w-4" />}
+        direction="left"
+        href={createPageURL(1)}
+        isDisabled={currentPage <= 1}
+      />
+      <PaginationArrow
+        icon={<ChevronLeftIcon className="w-4" />}
         direction="left"
         href={createPageURL(currentPage - 1)}
         isDisabled={currentPage <= 1}
@@ -32,7 +45,7 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
           if (index === 0) position = "first";
           if (index === allPages.length - 1) position = "last";
           if (allPages.length === 1) position = "single";
-          if (page === "...") position = "middle";
+          //  if (page === "...") position = "middle";
 
           return (
             <PaginationNumber
@@ -46,8 +59,15 @@ export default function Pagination({ totalPages }: { totalPages: number }) {
         })}
       </div>
       <PaginationArrow
+        icon={<ChevronRightIcon className="w-4" />}
         direction="right"
         href={createPageURL(currentPage + 1)}
+        isDisabled={currentPage >= totalPages}
+      />
+      <PaginationArrow
+        icon={<ChevronDoubleRightIcon className="w-4" />}
+        direction="right"
+        href={createPageURL(totalPages)}
         isDisabled={currentPage >= totalPages}
       />
     </div>
@@ -86,30 +106,25 @@ function PaginationNumber({
 }
 
 function PaginationArrow({
+  icon,
   href,
   direction,
   isDisabled,
 }: {
+  icon: ReactElement;
   href: string;
   direction: "left" | "right";
   isDisabled?: boolean;
 }) {
   const className = clsx(
-    "flex w-9 h-9 items-center justify-center rounded-md ",
+    "flex w-9 h-9 items-center justify-center rounded-md",
     {
-      "pointer-events-none text-gray-300 dark:text-gray-700": isDisabled,
+      "hidden pointer-events-none text-gray-300 dark:text-gray-700": isDisabled,
       "hover:bg-gray-200 dark:hover:bg-gray-800": !isDisabled,
       "mr-1": direction === "left",
       "ml-1": direction === "right",
     },
   );
-
-  const icon =
-    direction === "left" ? (
-      <ChevronLeftIcon className="w-4" />
-    ) : (
-      <ChevronRightIcon className="w-4" />
-    );
 
   return isDisabled ? (
     <div className={className}>{icon}</div>
