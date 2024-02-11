@@ -54,7 +54,7 @@ export default function RootLayout({
               {children}
             </main>
           </div>
-          <div className="bg-radial-gradient-master absolute left-1/2 top-0 -z-10 hidden h-screen w-full -translate-x-1/2  dark:block"></div>
+          <div className="bg-radial-gradient-master absolute left-1/2 top-0 -z-10 hidden h-screen w-full -translate-x-1/2 dark:block"></div>
         </Providers>
       </body>
     </html>
