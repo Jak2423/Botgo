@@ -29,7 +29,7 @@ export default function Navbar() {
 
   return (
     <div className="flex flex-col justify-center px-8">
-      <nav className="relative mx-auto flex w-full max-w-2xl items-center justify-between pb-8 pt-8 md:pb-16">
+      <nav className="relative mx-auto flex w-full max-w-2xl items-center justify-between py-8">
         <div>
           <Link
             href={"/"}
