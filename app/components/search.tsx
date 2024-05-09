@@ -37,7 +37,7 @@ export default function Search() {
   };
 
   return (
-    <div className="sticky top-0 flex w-full flex-col space-y-4 pt-8  backdrop-blur-md sm:flex-row sm:items-center sm:justify-between sm:space-x-3 sm:space-y-0">
+    <div className="sticky top-6 z-50 flex w-full flex-col space-y-4  rounded-md backdrop-blur-md sm:flex-row sm:items-center sm:justify-between sm:space-x-3 sm:space-y-0">
       <div className="relative w-full flex-1">
         <input
           className="w-full rounded-md border border-gray-200 bg-gray-100 py-2 pl-4 pr-10 text-gray-900 outline-none hover:border-gray-400 focus:border-gray-400 focus:outline-none dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 dark:hover:border-gray-500 dark:focus:border-gray-500"

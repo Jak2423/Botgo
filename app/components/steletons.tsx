@@ -16,7 +16,7 @@ export function CourseSkeleton() {
 
 export function CoursesSkeleton() {
   return (
-    <div className="w-full md:min-w-[42rem]">
+    <div className="mt-8 w-full md:min-w-[42rem]">
       <CourseSkeleton />
       <CourseSkeleton />
       <CourseSkeleton />
